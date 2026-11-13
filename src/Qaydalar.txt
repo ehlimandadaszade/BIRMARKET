@@ -1,0 +1,54 @@
+1. Hər kəs Tailwand css istifade etsin 
+2. Heç kim əlavə Folder açmasin
+3. Heç kim main push etmesin
+4. Hər kəsin componenentində section header və footer eni 100% və bunların daxilində bir div olacaq ki 90%
+          
+          
+          
+              <Cart
+                id={element.id}
+                key={element.id}
+                image={element.thumbnail}
+                title={element.title}
+                price={element.price}
+                oldPrice={oldPrice}
+                discount={`-${Math.round(element.discountPercentage)}%`}
+                badge={element.category}
+                monthly={(element.price / 12).toFixed(2)}
+                reviews={element.reviews?.length || 0}
+                rating={Math.round(element.rating)}
+                onAddToCart={() => console.log(`${element.title} səbətə əlavə olundu`)}
+              />
+
+
+// əgər detail acilmaqini isteyirsize bu numuneden istifade edin
+            <Link key={element.id} to={`/product/${element.id}`} target="_blank" rel="noopener noreferrer">
+              <Cart
+                id={element.id}
+                key={element.id}
+                image={element.thumbnail}
+                title={element.title}
+                price={element.price}
+                oldPrice={oldPrice}
+                discount={`-${Math.round(element.discountPercentage)}%`}
+                badge={element.category}
+                monthly={(element.price / 12).toFixed(2)}
+                reviews={element.reviews?.length || 0}
+                rating={Math.round(element.rating)}
+                onAddToCart={() => console.log(`${element.title} səbətə əlavə olundu`)}
+              />
+            </Link>
+
+
+
+
+
+
+bu isə komponentinizdə istifadə etməli olduğunuz koddur 
+
+nə üçündür:
+api gələndə onu gələn müddətə qədər gözlətməkdir,bunu yazmasaz obyekt boş gələcək
+
+  if (loading) {
+    return <FaSpinner className="animate-spin text-blue-600 w-full text-center" size={30} />;
+  }
