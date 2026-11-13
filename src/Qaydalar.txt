@@ -49,6 +49,7 @@ bu isə komponentinizdə istifadə etməli olduğunuz koddur
 nə üçündür:
 api gələndə onu gələn müddətə qədər gözlətməkdir,bunu yazmasaz obyekt boş gələcək
 
+  const { Api, loading } = useContext(GlobalContextApi);
   if (loading) {
     return <FaSpinner className="animate-spin text-blue-600 w-full text-center" size={30} />;
   }
