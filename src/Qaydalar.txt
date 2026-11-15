@@ -52,6 +52,22 @@ nə üçündür:
 api gələndə onu gələn müddətə qədər gözlətməkdir,bunu yazmasaz obyekt boş gələcək
 
   const { Api, loading } = useContext(GlobalContextApi);
-  if (loading) {
-    return <FaSpinner className="animate-spin text-blue-600 w-full text-center" size={30} />;
+    if (loading) {
+    return (
+      <div className="w-full flex justify-center py-10">
+        <FaSpinner className="animate-spin text-blue-600" size={30} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
+  }
+
+  if (!Array.isArray(Api) || Api.length === 0) {
+    return (
+      <p className="text-center py-10">
+        Məhsul tapılmadı.
+      </p>
+    );
   }
