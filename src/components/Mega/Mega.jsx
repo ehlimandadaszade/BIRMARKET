@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
-import Cart from '../Cart/Cart'
-import Card from '../../components/Cart/Cart.jsx'
+import { useContext } from "react";
+import { GlobalContextApi } from "../../GlobalApi/GlobalContextApi";
+import Cart from "../Cart/Cart";
+import { FaSpinner } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const API_KEY = 'bura acari yaaz'
 const ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions'
@@ -268,61 +271,76 @@ const ChatWidget = () => {
   )
 }
 
-const mehsullar = [
-  { image: "https://strgimgr.b-cdn.net/img/product/280/61b8acaf-bc81-4aee-9bcf-5ba5b5af3515.jpeg?width=280&height=280", title: "Smartfon Samsung Galaxy S25 Ultra 12GB/256GB Titanium Silver Blue",price: 1900},
-  { image: "https://strgimgr.b-cdn.net/img/product/280/fca0daa5-ba43-4390-bcb8-1543cf3baf94.jpeg?width=280&height=280", title: "Kokteyl üçün quru baza Osnova Tech Cordial Shake Tonik Sitrus 500 q",price: 10},
-  { image: "https://strgimgr.b-cdn.net/img/product/280/52ab9a1c-5e89-43f2-9157-3d73e4101e64.jpeg?width=280&height=280", title: "Televizor iFFalcon 32S55",price: 2500},
-  { image: "https://strgimgr.b-cdn.net/img/product/280/2d7c77cb-830f-4e13-8cc8-37c42203123e.jpeg?width=280&height=280", title: "Avtomobil üçün alətlər dəsti New Tools, 46 parça",price: 25}
-]
 
 const Mega = () => {
+  const { Api, loading, error } = useContext(GlobalContextApi);
+
+  if (loading) {
+    return (
+      <div className="w-full flex justify-center py-10">
+        <FaSpinner className="animate-spin text-blue-600" size={30} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
+  }
+
+  if (!Array.isArray(Api) || Api.length === 0) {
+    return (
+      <p className="text-center py-10">
+        Məhsul tapılmadı.
+      </p>
+    );
+  }
   return (
 
     <>
-    <div className='Mega h-[100vh] ms-[2rem] me-[2rem]'>
-      <div className='h-[150px] flex items-center gap-2'>
-        <div className='bg-[#ff429a] text-[#fff] w-[100px] h-[60px]  rounded-[5px] flex items-center justify-center'>
-          <h1 className='text-[#fff] font-[600] text-[33px]'>Mega</h1>
+      <div className='w-full flex justify-center py-8'>
+        <div className='w-[90%] h-[150px] flex items-center gap-2'>
+          <div className='bg-[#ff429a] text-[#fff] w-[100px] h-[60px]  rounded-[5px] flex items-center justify-center'>
+            <h1 className='text-[#fff] font-[600] text-[33px]'>Mega</h1>
+          </div>
+          <p className='text-[40px] font-[600]'>endirimlər</p>
         </div>
-        <p className='text-[40px] font-[600]'>endirimlər</p>
       </div>
 
-      <div className='mega-card flex justify-between flex-wrap'>
-
-        {
-
-          mehsullar.map((item, index) => (
-            <Card 
-              image= {item.image}
-              title={item.title}
-              price={item.price}
-              oldPrice="899"
-              discount="-11%"
-              badge="Yeni"
-              monthly="66.58"
-              reviews={124}
-              rating={4}
-              onAddToCart={() => console.log('Səbətə əlavə olundu')}
-            />
-          ))
-
-        }
-
-
+      <div className='w-full flex justify-center py-8'>
+        <div className='w-[90%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
+          {Api  .filter((item) => item.discountPercent > 0).sort(() => Math.random() - 0.5).slice(0, 5).map((element) => (
+            <Link
+              key={element.id}
+              to={`/product/${element.id}`}
+              className="block"
+            >
+              <Cart
+                id={element.id}
+                image={element.images}
+                title={element.name}
+                price={element.price}
+                oldPrice={element.oldPrice}
+                discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
+                badge={element.category}
+                monthly={(element.price / 12).toFixed(2)}
+                reviews={element.rating?.count || 0}
+                rating={element.rating?.average || 0}
+                onAddToCart={() => console.log(`${element.name} səbətə əlavə olundu`)}
+              />
+            </Link>
+          ))}
+        </div>
       </div>
 
-      <div className=''></div>
-
-
-    </div>
-      
-      <div className='button w-[100%] h-[70px] flex justify-center items-center'>
-        <button className='bg-[none] border-1 text-[#ea207e] w-[350px] h-[50px]'>Bütün endirimlərə baxmaq</button>
+      <div className="w-full flex justify-center items-center py-6">
+        <button className="bg-none border border-[#ea207e] text-[#ea207e] w-[350px] max-w-[90%] h-[50px]">
+          Bütün endirimlərə baxmaq
+        </button>
       </div>
 
       <ChatWidget />
 
-      </>
+    </>
   )
 }
 
