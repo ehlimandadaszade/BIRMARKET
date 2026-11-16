@@ -58,7 +58,7 @@ function Cart({
             </span>
           )}
           {badge && (
-            <span className="card-badge h-[18px] px-[4px] flex items-center bg-[#d63de0] text-white text-[11px] font-medium rounded-[2px]">
+            <span className="card-badge min-h-[18px] h-auto max-w-[180px] px-[4px] py-[3px] flex items-center bg-[#d63de0] text-white text-[11px] font-medium rounded-[2px] whitespace-normal break-words leading-[14px]">
               {badge}
             </span>
           )}
@@ -105,7 +105,7 @@ function Cart({
       <button
         type="button"
         onClick={onAddToCart}
-        className="card-duyme mt-[12px] w-full h-[41px] flex items-center justify-center gap-x-[9px] bg-[#fdeef4] text-[#f0317f] text-[16px] font-semibold rounded-[3px] transition-colors duration-200 hover:bg-[#f0317f] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f0317f]"
+        className="card-duyme mt-[12px] w-full h-[41px] flex items-center justify-center gap-x-[9px] cursor-pointer bg-[#fdeef4] text-[#f0317f] text-[16px] font-semibold rounded-[3px] transition-colors duration-200 hover:bg-[#f0317f] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f0317f]"
       >
         <svg
           width="24"
