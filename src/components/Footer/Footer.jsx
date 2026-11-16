@@ -10,12 +10,12 @@ import { FaYoutube } from "react-icons/fa";
 const Footer = () => {
   return (
     <section className='w-[100%] h-screen  flex justify-center'>
-      <main className='w-[90%]  h-[100vh] flex py-4.5'>
+      <footer className='w-[90%]  h-[100vh] flex justify-between py-4.5'>
 
 
 
         {/* sol teref */}
-        <div className="sec-1  w-[35%] h-[100%] ml-3 flex flex-col gap-11">
+        <div className="sec-1  w-[35%] h-[100%]  flex flex-col gap-11">
           <div className="online flex flex-col gap-4">
             <h1 className='text-[17px] hover:cursor-pointer text-gray-600 font-bold'>Dəstək mərkəzi</h1>
             <div className="box-1 w-[280px] h-[65px]  rounded-xl flex items-center gap-3 justify-center border-2  border-mauve-100">
@@ -39,19 +39,19 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="kanal flex flex-col gap-4  w-[400px] h-[400px]">
+          <div className="kanal flex flex-col gap-4  w-[400px] h-[400px] hover:cursor-pointer ">
             <h1 className='text-[17px] text-gray-600 font-bold hover:cursor-pointer'>Bizi izləyin</h1>
             <div className='flex gap-2 items-center'>
               <IoLogoWhatsapp className='text-emerald-500 text-[22px]' />
-              <p className='text-[16px] text-gray-600 font-normal hover:text-[#E91E63]'> Whatsapp kanal </p>
+              <p className='text-[16px] text-gray-600 font-normal hover:text-[#E91E63] hover:cursor-pointer '> Whatsapp kanal </p>
             </div>
             <div className='flex gap-2 items-center' >
               <FaTelegram className='text-blue-500 text-[22px]' />
-              <p className='text-[16px] text-gray-600 font-normal hover:text-[#E91E63]' >Telegram kanal </p>
+              <p className='text-[16px] text-gray-600 font-normal hover:text-[#E91E63] hover:cursor-pointer' >Telegram kanal </p>
             </div>
             <div className='flex gap-2 items-center' >
                <FaInstagram className='text-pink-700 text-[22px]' />
-              <p className='text-[16px] text-gray-600 font-normal hover:text-[#E91E63]' >Instagram Birmarket </p>
+              <p className='text-[16px] text-gray-600 font-normal hover:text-[#E91E63] hover:cursor-pointer' >Instagram Birmarket </p>
             </div>
             <div className='flex gap-2 items-center' >
                <FaSquareFacebook className='text-blue-700 text-[22px]' />
@@ -72,7 +72,7 @@ const Footer = () => {
 
 
         {/* sag teref */}
-        <div className="sec-2 w-[65%]  h[100%] flex flex-col gap-9 ">
+        <div className="sec-2 w-[65%]  h[100%] flex flex-col gap-9 hover:cursor-pointer ">
           <div className="text   flex items-center justify-around gap-25 ">
             <div className="col-1 flex flex-col gap-4">
               <h1 className='text-[17px] text-gray-600 font-bold hover:cursor-pointer'>Müştərilər üçün</h1>
@@ -116,7 +116,7 @@ const Footer = () => {
       </div>
           </div>
         </div>
-      </main>
+      </footer>
     </section>
   )
 }

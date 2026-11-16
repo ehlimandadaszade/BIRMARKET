@@ -21,7 +21,7 @@ const New = () => {
   }
 
   return (
-    <section className='flex justify-center pb-[50px]'>
+    <section className='flex flex-col items-center justify-center pb-[50px]'>
       <div className='h-full w-[90%]'>
         <div className='flex items-center gap-x-[20px] pb-[30px]'>
           <p className='text-[35px] font-[600] text-[#21274F]'>Yeniliklər</p>
@@ -36,7 +36,7 @@ const New = () => {
             <div
               style={{ transform: `translateX(-${px}px)` }}
               className='flex gap-x-[10px] transition-all duration-300'>
-              {prod?.map(element => {
+              {prod?.sort(() => Math.random() - 0.5).map(element => {
                 return <div key={element.id} className='shrink-0'>
                   <Cart
                     id={element.id}
@@ -47,8 +47,8 @@ const New = () => {
                     discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
                     badge={element.category}
                     monthly={(element.price / 12).toFixed(2)}
-                    reviews={element.rating?.count || 0}
-                    rating={element.rating?.average || 0}
+                    reviews={element.rating?.count || 3}
+                    rating={element.rating?.average || 4}
                     onAddToCart={() => console.log(`${element.name} səbətə əlavə olundu`)}
                   />
                 </div>
@@ -61,6 +61,12 @@ const New = () => {
             onClick={() => setCarousel(x => x + 1)}
             className='w-[50px] h-[50px] rounded-[50%] bg-white absolute right-0 translate-x-[50%] z-1 cursor-pointer flex justify-center items-center text-[#EB2983] text-[25px] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'><MdOutlineArrowForwardIos /></button>
         </div>
+      </div>
+
+      <div className="w-full flex justify-center items-center py-6">
+        <button className="bg-none border border-[#ea207e] text-[#ea207e] w-[350px] max-w-[90%] h-[50px]">
+          Bütün yeniliklərə baxmaq
+        </button>
       </div>
     </section>
   )

@@ -46,7 +46,7 @@ import smImage3 from '../../assets/sm-image3.jpg'
 const Hero = () => {
   return (
     <section className="w-full bg-white py-3 font-['Roboto']">
-      <div className="max-w-[1280px] w-[90%] mx-auto grid grid-cols-[240px_1fr_280px] gap-4 items-start">
+      <div className=" w-[90%] mx-auto grid grid-cols-[240px_1fr_280px] gap-4 items-start">
 
         <div className="bg-white">
           <div className="h-[515px] overflow-y-auto [scrollbar-width:none] hover:[scrollbar-width:thin]">
@@ -234,7 +234,7 @@ const Hero = () => {
           </div>
 
           
-          <div className="mt-4 flex items-center justify-between gap-4 bg-white py-4 px-2">
+          <div className="mt-4 flex items-center justify-between gap-4 bg-white py-4 px-2 hide-scrollbar">
 
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full shrink-0 flex items-center justify-center bg-[#4FD1C5] text-white">

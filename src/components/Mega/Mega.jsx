@@ -297,7 +297,7 @@ const Mega = () => {
   return (
 
     <>
-      <div className='w-full flex justify-center py-8'>
+      <div className='w-full flex justify-center'>
         <div className='w-[90%] h-[150px] flex items-center gap-2'>
           <div className='bg-[#ff429a] text-[#fff] w-[100px] h-[60px]  rounded-[5px] flex items-center justify-center'>
             <h1 className='text-[#fff] font-[600] text-[33px]'>Mega</h1>
@@ -306,33 +306,29 @@ const Mega = () => {
         </div>
       </div>
 
-      <div className='w-full flex justify-center py-8'>
+      <div className='w-full flex justify-center '>
         <div className='w-[90%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-          {Api  .filter((item) => item.discountPercent > 0).sort(() => Math.random() - 0.5).slice(0, 5).map((element) => (
-            <Link
-              key={element.id}
-              to={`/product/${element.id}`}
-              className="block"
-            >
-              <Cart
-                id={element.id}
-                image={element.images}
-                title={element.name}
-                price={element.price}
-                oldPrice={element.oldPrice}
-                discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
-                badge={element.category}
-                monthly={(element.price / 12).toFixed(2)}
-                reviews={element.rating?.count || 0}
-                rating={element.rating?.average || 0}
-                onAddToCart={() => console.log(`${element.name} səbətə əlavə olundu`)}
-              />
-            </Link>
+          {Api.filter((item) => item.discountPercent > 0).sort(() => Math.random() - 0.5).slice(0, 5).map((element) => (
+
+            <Cart
+              id={element.id}
+              image={element.images}
+              title={element.name}
+              price={element.price}
+              oldPrice={element.oldPrice}
+              discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
+              badge={element.category}
+              monthly={(element.price / 12).toFixed(2)}
+              reviews={element.rating?.count || 0}
+              rating={element.rating?.average || 0}
+              onAddToCart={() => console.log(`${element.name} səbətə əlavə olundu`)}
+            />
+
           ))}
         </div>
       </div>
 
-      <div className="w-full flex justify-center items-center py-6">
+      <div className="w-full flex justify-center items-center py-[50px]">
         <button className="bg-none border border-[#ea207e] text-[#ea207e] w-[350px] max-w-[90%] h-[50px]">
           Bütün endirimlərə baxmaq
         </button>

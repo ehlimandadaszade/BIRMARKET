@@ -164,7 +164,7 @@ const Discount = () => {
           <DiscountCard
             title="Kondisionerlər"
             image={kondisioner}
-            className="aspect-square"
+            className="aspect-square "
           />
 
           <DiscountCard

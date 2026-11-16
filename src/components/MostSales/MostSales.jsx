@@ -17,39 +17,38 @@ const MostSales = () => {
 
 
   return (
-    <div className='w-[100%] h-auto flex justify-center items-center'>
-      <div className="w-[90%] h-auto flex flex-col gap-[20px]">
+    <div className='w-[100%] bg-[#FAFBFF] h-auto flex justify-center items-center'>
+      <div className="w-[90%] h-auto flex flex-col gap-[30px]">
         <div className="bir w-full max-w-[500px] h-auto flex gap-[15px] items-center pb-[10px]">
           <h1 className='text-[34px] font-bold tracking-wide text-[#1E244D]'>Ən çox satılanlar</h1>
           <img data-info="bestseller-logo" src="https://birmarket.az/images/birmarket_logo.svg" alt="Birmarket Logo" className='pt-[5px]'></img>
         </div>
         <div className="iki h-auto flex gap-[10px] flex-wrap">
-          {Api && Api.slice(0, 15).map((element) => {
+          {Api && Api.slice(0, 15).sort(() => Math.random() - 0.5).map((element) => {
             const oldPrice = (element.price / (1 - element.discountPercentage / 100)).toFixed(2)
             return (
-              <Link key={element.id} to={`/product/${element.id}`} className='block'>
-                <Cart
-                  id={element.id}
-                  key={element.id}
-                  image={element.images}
-                  title={element.name}
-                  price={element.price}
-                  oldPrice={element.oldPrice}
-                  discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
-                  badge={element.category}
-                  monthly={(element.price / 12).toFixed(2)}
-                  reviews={element.rating?.count || 3}
-                  rating={element.rating?.average || 4}
-                  onAddToCart={() => console.log(`${element.name} sebete elave olundu`)}
-                />
-              </Link>
+
+              <Cart
+                id={element.id}
+                image={element.images}
+                title={element.name}
+                price={element.price}
+                oldPrice={element.oldPrice}
+                discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
+                badge={element.category}
+                monthly={(element.price / 12).toFixed(2)}
+                reviews={element.rating?.count || 3}
+                rating={element.rating?.average || 4}
+                onAddToCart={() => console.log(`${element.name} səbətə əlavə olundu`)}
+              />
+
             )
           })}
         </div>
-        <div className="uc flex justify-center items-center pt-[20px]">
+        <div className="uc flex justify-center items-center pb-[50px] ">
           <button className='border border-solid border-[#EA207E] text-[#EA207E] h-[50px] w-[420px] font-normal cursor-pointer'>Məhsul kateqoriyalarına keç</button>
         </div>
-        <div className="dord h-[150px]"></div>
+
       </div>
     </div>
   )

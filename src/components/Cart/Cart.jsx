@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,10 +19,9 @@ function Cart({
   const filledStars = Math.round(Math.min(Math.max(rating, 0), 5));
 
   return (
-
     <div className="card relative w-[265px] overflow-hidden bg-white border border-gray-200 rounded px-[20px] py-[16px] flex flex-col">
 
-      {/* Ürək ikonu (klaviatura ilə də işləsin deyə button) */}
+      {/* Ürək ikonu */}
       <button
         type="button"
         onClick={() => setIsFavorite((prev) => !prev)}
@@ -43,16 +43,18 @@ function Cart({
       </button>
 
       {/* Şəkil və nişanlar */}
-      <Link
-        to={`/product/${id}`}
-        className="card-sekil-qutu relative w-full h-[195px] flex items-center justify-center cursor-pointer"
-      >
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="card-sekil w-[165px] max-h-full object-contain"
-        />
+      <div className="card-sekil-qutu relative w-full h-[195px] flex items-center justify-center">
+        <Link
+          to={`/product/${id}`}
+          className="w-full h-full flex items-center justify-center"
+        >
+          <img
+            src={Array.isArray(image) ? image[0] : image}
+            alt={title}
+            loading="lazy"
+            className="card-sekil w-[165px] max-h-full object-contain cursor-pointer"
+          />
+        </Link>
 
         <div className="card-isareler absolute left-0 bottom-0 z-10 flex flex-col items-start gap-y-[3px]">
           {discount && (
@@ -67,7 +69,7 @@ function Cart({
             </span>
           )}
         </div>
-      </Link>
+      </div>
 
       <Link
         to={`/product/${id}`}
@@ -110,7 +112,7 @@ function Cart({
         </div>
       </Link>
 
-      {/* Düymə — mt-auto əvəzinə sabit məsafə */}
+      {/* Səbət düyməsi */}
       <button
         type="button"
         onClick={onAddToCart}
@@ -131,8 +133,6 @@ function Cart({
         Sabah
       </button>
     </div>
-
-
   );
 }
 

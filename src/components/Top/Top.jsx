@@ -20,8 +20,8 @@ const TOP = () => {
   }
 
   return (
-    <section className='flex justify-center pb-[50px]'>
-      <div className='h-[800px] w-[90%]'>
+    <section className='flex justify-center '>
+      <div className='h-[700px] w-[90%]'>
         <div className='flex items-center gap-x-[20px] pb-[30px]'>
           <p className='text-[35px] font-[600] text-[#21274F]'>TOP məhsullar</p>
         </div>
@@ -34,7 +34,7 @@ const TOP = () => {
             <div
               style={{ transform: `translateX(-${px}px)` }}
               className='flex gap-x-[10px] transition-all duration-300'>
-              {prod?.map(element => {
+              {prod?.sort(() => Math.random() - 0.5).map(element => {
                 return <div key={element.id} className='shrink-0 cursor-pointer'>
                   <Cart
                     id={element.id}
