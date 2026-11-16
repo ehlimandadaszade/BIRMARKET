@@ -10,6 +10,9 @@ import { FaSpinner } from 'react-icons/fa';
 const New = () => {
 
   const { Api, loading } = useContext(GlobalContextApi);
+
+  const prod = Api.slice(0, 15)
+
   const [carousel, setCarousel] = useState(0)
   const px = 1375 * carousel
 
@@ -33,26 +36,24 @@ const New = () => {
             <div
               style={{ transform: `translateX(-${px}px)` }}
               className='flex gap-x-[10px] transition-all duration-300'>
-              {Api?.map(element => {
-                if (element.id < 16) {
-                  return <div key={element.id} className='shrink-0'>
-                    <Cart
-                      id={element.id}
-                      key={element.id}
-                      image={element.thumbnail}
-                      title={element.title}
-                      price={element.price}
-                      oldPrice={element.oldPrice}
-                      discount={`-${Math.round(element.discountPercentage)}%`}
-                      badge={element.category}
-                      monthly={(element.price / 12).toFixed(2)}
-                      reviews={element.reviews?.length || 0}
-                      rating={Math.round(element.rating)}
-                      onAddToCart={() => console.log(`${element.title} səbətə əlavə olundu`)}
-                    />
-                  </div>
-                }
-              })}
+              {prod?.map(element => {
+                return <div key={element.id} className='shrink-0'>
+                  <Cart
+                    id={element.id}
+                    image={element.images}
+                    title={element.name}
+                    price={element.price}
+                    oldPrice={element.oldPrice}
+                    discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
+                    badge={element.category}
+                    monthly={(element.price / 12).toFixed(2)}
+                    reviews={element.rating?.count || 0}
+                    rating={element.rating?.average || 0}
+                    onAddToCart={() => console.log(`${element.name} səbətə əlavə olundu`)}
+                  />
+                </div>
+              }
+              )}
             </div>
           </div>
           <button
