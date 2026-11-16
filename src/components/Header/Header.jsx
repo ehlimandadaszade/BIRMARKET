@@ -6,8 +6,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { GoCheck } from "react-icons/go";
-import { SlArrowDown } 
-from "react-icons/sl";
+import { SlArrowDown } from "react-icons/sl";
 
 
 import aze from "../../assets/azerbaijan.png";
