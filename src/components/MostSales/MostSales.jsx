@@ -1,8 +1,57 @@
-import React from 'react'
-
+import React, { useContext } from 'react'
+import { GlobalContextApi } from '../../GlobalApi/GlobalContextApi'
+import ikon from '../../assets/Birmarket.png'
+import Cart from '../Cart/Cart'
+import { FaSpinner } from "react-icons/fa"
+import { Link } from 'react-router-dom'
 const MostSales = () => {
+  const { Api, loading } = useContext(GlobalContextApi)
+
+  if (loading) {
+    return (
+      <div className="w-full flex justify-center py-10">
+        <FaSpinner className="animate-spin text-blue-600" size={30} />
+      </div>
+    );
+  }
+
+
   return (
-    <div>MostSales</div>
+    <div className='w-[100%] h-auto flex justify-center items-center'>
+      <div className="w-[90%] h-auto flex flex-col gap-[20px]">
+        <div className="bir w-full max-w-[500px] h-auto flex gap-[15px] items-center pb-[10px]">
+          <h1 className='text-[34px] font-bold tracking-wide text-[#1E244D]'>Ən çox satılanlar</h1>
+          <img data-info="bestseller-logo" src="https://birmarket.az/images/birmarket_logo.svg" alt="Birmarket Logo" className='pt-[5px]'></img>
+        </div>
+        <div className="iki h-auto flex gap-[10px] flex-wrap">
+          {Api && Api.slice(0, 15).map((element) => {
+            const oldPrice = (element.price / (1 - element.discountPercentage / 100)).toFixed(2)
+            return (
+              <Link key={element.id} to={`/product/${element.id}`} className='block'>
+                <Cart
+                  id={element.id}
+                  key={element.id}
+                  image={element.images}
+                  title={element.name}
+                  price={element.price}
+                  oldPrice={element.oldPrice}
+                  discount={element.discountPercent ? `-${element.discountPercent}%` : ""}
+                  badge={element.category}
+                  monthly={(element.price / 12).toFixed(2)}
+                  reviews={element.rating?.count || 3}
+                  rating={element.rating?.average || 4}
+                  onAddToCart={() => console.log(`${element.name} sebete elave olundu`)}
+                />
+              </Link>
+            )
+          })}
+        </div>
+        <div className="uc flex justify-center items-center pt-[20px]">
+          <button className='border border-solid border-[#EA207E] text-[#EA207E] h-[50px] w-[420px] font-normal cursor-pointer'>Məhsul kateqoriyalarına keç</button>
+        </div>
+        <div className="dord h-[150px]"></div>
+      </div>
+    </div>
   )
 }
 
