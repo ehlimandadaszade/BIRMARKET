@@ -10,7 +10,7 @@ export const GlobalProvider = ({ children }) => {
     const [Api, setApi] = useState([])
 
     useEffect(() => {
-        fetch('https://dummyjson.com/products')
+       fetch("https://dummyjson.com/products?limit=0")
             .then(res => res.json())
             .then(data =>{
                 setApi(data.products)
