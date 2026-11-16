@@ -43,7 +43,10 @@ function Cart({
       </button>
 
       {/* Şəkil və nişanlar */}
-      <div className="card-sekil-qutu relative w-full h-[195px] flex items-center justify-center">
+      <Link
+        to={`/product/${id}`}
+        className="card-sekil-qutu relative w-full h-[195px] flex items-center justify-center cursor-pointer"
+      >
         <img
           src={image}
           alt={title}
@@ -57,49 +60,55 @@ function Cart({
               {discount}
             </span>
           )}
+
           {badge && (
             <span className="card-badge min-h-[18px] h-auto max-w-[180px] px-[4px] py-[3px] flex items-center bg-[#d63de0] text-white text-[11px] font-medium rounded-[2px] whitespace-normal break-words leading-[14px]">
               {badge}
             </span>
           )}
         </div>
-      </div>
+      </Link>
 
-      {/* Qiymət */}
-      <div className="card-qiymet-sira mt-[12px] flex flex-wrap items-center gap-x-[8px]">
-        <span className="card-qiymet text-[18px] font-bold text-[#f0317f]">{price} ₼</span>
-        {oldPrice && (
-          <span className="card-kohne-qiymet text-[13px] font-semibold text-gray-400 line-through">
-            {oldPrice} ₼
+      <Link
+        to={`/product/${id}`}
+        className="block cursor-pointer"
+      >
+        {/* Qiymət */}
+        <div className="card-qiymet-sira mt-[12px] flex flex-wrap items-center gap-x-[8px]">
+          <span className="card-qiymet text-[18px] font-bold text-[#f0317f]">{price} ₼</span>
+          {oldPrice && (
+            <span className="card-kohne-qiymet text-[13px] font-semibold text-gray-400 line-through">
+              {oldPrice} ₼
+            </span>
+          )}
+        </div>
+
+        {/* Taksit */}
+        <div className="mt-[6px] min-h-[22px]">
+          {monthly && (
+            <div className="card-taksit w-fit px-[8px] h-[22px] flex items-center justify-center bg-[#fde047] rounded-[3px] text-[13px] font-medium text-gray-900">
+              {monthly} ₼ x 12 ay
+            </div>
+          )}
+        </div>
+
+        {/* Başlıq */}
+        <h3 className="card-basliq mt-[6px] min-h-[38px] text-[13px] leading-[19px] text-gray-800 line-clamp-2 overflow-hidden">
+          {title}
+        </h3>
+
+        {/* Reytinq */}
+        <div className="card-reytinq mt-[6px] flex items-center gap-x-[5px]">
+          <span
+            className="card-ulduzlar text-[14px] tracking-[1px]"
+            aria-label={`${filledStars} ulduz`}
+          >
+            <span className="text-[#ff9900]">{'★'.repeat(filledStars)}</span>
+            <span className="text-gray-300">{'★'.repeat(5 - filledStars)}</span>
           </span>
-        )}
-      </div>
-
-      {/* Taksit — yer həmişə qorunur ki, bütün kartlar eyni hündürlükdə olsun */}
-      <div className="mt-[6px] min-h-[22px]">
-        {monthly && (
-          <div className="card-taksit w-fit px-[8px] h-[22px] flex items-center justify-center bg-[#fde047] rounded-[3px] text-[13px] font-medium text-gray-900">
-            {monthly} ₼ x 12 ay
-          </div>
-        )}
-      </div>
-
-      {/* Başlıq — həmişə 2 sətirlik yer */}
-      <h3 className="card-basliq mt-[6px] min-h-[38px] text-[13px] leading-[19px] text-gray-800 line-clamp-2 overflow-hidden">
-        {title}
-      </h3>
-
-      {/* Reytinq */}
-      <div className="card-reytinq mt-[6px] flex items-center gap-x-[5px]">
-        <span
-          className="card-ulduzlar text-[14px] tracking-[1px]"
-          aria-label={`${filledStars} ulduz`}
-        >
-          <span className="text-[#ff9900]">{'★'.repeat(filledStars)}</span>
-          <span className="text-gray-300">{'★'.repeat(5 - filledStars)}</span>
-        </span>
-        <span className="card-reytinq-say text-[12px] text-gray-500">{reviews} reytinq</span>
-      </div>
+          <span className="card-reytinq-say text-[12px] text-gray-500">{reviews} reytinq</span>
+        </div>
+      </Link>
 
       {/* Düymə — mt-auto əvəzinə sabit məsafə */}
       <button
