@@ -128,7 +128,7 @@ const Header = () => {
   return (
     <>
       <section className=" absolute fixed top-0 left-0 w-full z-50   font-[Roboto]  ">
-        <div className="  flex w-full h-[35px] bg-[#F1F2F3] justify-between px-[110px] items-center cursor-pointer">
+        <div className="  flex w-full h-[35px] bg-[#F1F2F3] justify-between px-[75px] items-center cursor-pointer">
           <div>
             <ul className="text-[#6d6e73] flex items-center gap-[25px] text-[13px] cursor-pointer ">
               <li className=" z-1 hover:text-[#6d6e73d5] cursor-pointer">Çatdırılma və ödəmə</li>
@@ -207,7 +207,7 @@ const Header = () => {
 
 
         <div className="flex w-full h-[60px] bg-[#F1F2F3]  items-center">
-          <div className=" flex items-center ustify-between p-[70px] gap-[20px]">
+          <div className=" flex items-center ustify-between p-[52px] gap-[20px]">
             <div>
 
               <img className="w-[210px] h-[210px] cursor-pointer" src={birmarket} alt="birmarket" />
