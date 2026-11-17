@@ -372,7 +372,7 @@ const Header = () => {
               )}
             </div>
             <div className="flex ">
-              <input className="bg-white w-[550px] h-[40px] px-3 outline-none  " type="text" placeholder="Məhsul axtar" />
+              <input className="bg-white w-[590px] h-[40px] px-3 outline-none  " type="text" placeholder="Məhsul axtar" />
               <button className="bg-[#e91c7c] w-[60px] h-[40px]  text-white text-[12px] cursor-pointer">Axtar</button>
             </div>
             <div className="flex gap-5">
