@@ -65,48 +65,29 @@ function Detail() {
 
   return (
     <>
-      {/* Navbarın altındakı kateqoriyalar sətri */}
-      <div className="fixed top-[93px] left-0 w-full h-[61px] bg-white border-b border-gray-200 z-40">
-        <div className="max-w-[1518px] mx-auto px-6 h-full flex items-center gap-3 text-[16px]">
 
-          <span className="text-[#9497AD]">Birmarket</span>
-          <span className="text-[#9497AD]">›</span>
-
-          <span className="text-[#9497AD]">Kateqoriyalar</span>
-          <span className="text-[#9497AD]">›</span>
-
-          <span className="text-[#9497AD]">Bağ üçün məhsullar</span>
-          <span className="text-[#9497AD]">›</span>
-
-          <span className="text-[#9497AD]">Bağ üçün texnika</span>
-          <span className="text-[#9497AD]">›</span>
-
-          <span className="font-semibold text-[#1e2438]">
-            Zəncirli mişarlar və elektrik mişarlar
-          </span>
-
-        </div>
-      </div>
 
       {/* Məhsulun əsas hissəsi */}
-      <div className="container mx-auto px-6 pt-[179px] pb-[260px]">
-        <div className="flex flex-wrap 2xl:flex-nowrap gap-6 items-start">
+      <div className="w-full max-w-[1518px] mx-auto  sm:px-6  pb-10 overflow-x-hidden">
+
+        <div className="flex flex-wrap 2xl:flex-nowrap gap-4 xl:gap-5 items-start justify-center">
 
           {/* Kiçik şəkillər */}
-          <div className="w-[80px] flex-shrink-0 flex flex-col gap-2 mt-[10px]">
+          <div className="w-[60px] sm:w-[70px] flex-shrink-0 flex flex-col gap-2 mt-[10px]">
             {images.map((img, index) => (
               <img
                 key={index}
                 src={img}
                 alt={product.name}
                 onClick={() => setSelectedImage(img)}
-                className="w-[80px] h-[60px] object-contain border border-gray-200 rounded cursor-pointer p-1"
+                className="w-full h-[50px] sm:h-[60px] object-contain border border-gray-200 rounded cursor-pointer p-1"
               />
             ))}
           </div>
 
           {/* Böyük şəkil və taksit dairələri */}
-          <div className="relative w-[450px] h-[450px] flex-shrink-0 flex items-center justify-center bg-white mt-[30px]">
+          <div className="relative w-[min(100%,450px)] sm:w-[min(450px,42vw)] aspect-square flex-shrink-0 flex items-center justify-center bg-white mt-[10px] sm:mt-[30px]">
+
             <img
               src={mainImage}
               alt={product.name}
@@ -114,7 +95,7 @@ function Detail() {
             />
 
             {/* Taksit dairələri */}
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 -translate-y-[270px] -translate-x-[-20px] flex flex-col gap-5">
+            <div className="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 -translate-y-[100px] translate-x-[-10px] flex flex-col gap-3 sm:gap-5 scale-[0.7] sm:scale-[0.85] origin-right">
 
               {/* Birinci dairə - Birbank */}
               <div
@@ -126,12 +107,10 @@ function Detail() {
               >
                 <div className="relative w-[85px] h-[55px] mb-1">
 
-                  {/* Boz-ağ kart */}
                   <div className="absolute top-[12px] left-[30px] w-[54px] h-[32px] rounded-[6px] bg-[#969696] border border-[#969696] shadow-md -rotate-[35deg] flex items-center justify-center">
                     <div className="w-[13px] h-[27px] bg-[#B6B6B6] rotate-88"></div>
                   </div>
 
-                  {/* Qara-bənövşəyi kart */}
                   <div className="absolute top-[12px] left-[1px] w-[54px] h-[32px] rounded-[6px] bg-gradient-to-br from-black to-purple-800 border border-purple-500 shadow-md -rotate-[35deg] flex items-center justify-center">
                     <div className="w-[13px] h-[27px] bg-[#9C21A6] rotate-88"></div>
                   </div>
@@ -167,10 +146,10 @@ function Detail() {
           </div>
 
           {/* Məhsul məlumatları */}
-          <div className="w-[420px] flex-shrink-0 mt-[30px]">
+          <div className="w-full sm:w-[420px] lg:w-[350px] xl:w-[360px] flex-shrink min-w-0 mt-[20px] sm:mt-[30px]">
 
             {/* Məhsulun adı */}
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-xl sm:text-2xl font-bold break-words">
               {product.name}
             </h1>
 
@@ -190,7 +169,7 @@ function Detail() {
             </div>
 
             {/* Məhsul kodu və seçilmişlər */}
-            <div className="flex items-center gap-5 mt-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-5 mt-4">
               <span>
                 Məhsulun kodu: {product.id}
               </span>
@@ -209,7 +188,7 @@ function Detail() {
                 Məhsul haqqında məlumat
               </h2>
 
-              <div className="flex flex-col gap-3 mt-4 text-[17px] text-black">
+              <div className="flex flex-col gap-3 mt-4 text-[16px] sm:text-[17px] text-black">
                 <p>
                   <span className="font-semibold text-[#9497AD]">Brend:</span>{" "}
                   {product.brand || "Məlumat yoxdur"}
@@ -233,24 +212,24 @@ function Detail() {
             </div>
 
             {/* Texniki göstəricilər */}
-            <p className="text-[#FF4B81] text-[17px] font-medium mt-5 cursor-pointer">
+            <p className="text-[#FF4B81] text-[16px] sm:text-[17px] font-medium mt-5 cursor-pointer">
               Texniki göstəricilər və təsvirə baxmaq
             </p>
 
           </div>
 
           {/* Kredit kalkulyatoru */}
-          <div className="w-[400px] max-w-full flex-shrink-0 border-l border-gray-200 pl-6 font-sans mt-[30px] ml-[150px]">
+          <div className="w-full sm:w-[400px] lg:w-[350px] xl:w-[370px] flex-shrink-0 min-w-0 border-l border-gray-200 pl-4 sm:pl-6 font-sans mt-[20px] sm:mt-[30px] ml-0 2xl:ml-2">
 
             {/* Qiymət bloku */}
-            <div className="flex flex-wrap items-center gap-3.5 mb-3">
+            <div className="flex flex-wrap items-center gap-3 mb-3">
 
-              <span className="text-[38px] font-extrabold text-[#ea1c85] leading-none">
+              <span className="text-[30px] sm:text-[34px] font-extrabold text-[#ea1c85] leading-none">
                 {hasPrice ? `${price.toFixed(2)} ₼` : "Qiymət yoxdur"}
               </span>
 
               {oldPrice !== null && oldPrice > price && (
-                <span className="text-xl font-bold text-[#7c8594] line-through">
+                <span className="text-lg font-bold text-[#7c8594] line-through">
                   {oldPrice.toFixed(2)} ₼
                 </span>
               )}
@@ -264,36 +243,36 @@ function Detail() {
             </div>
 
             {/* Sarı aylıq ödəniş etiketi */}
-            <div className="inline-block bg-[#fed23f] text-[#1e2438] text-lg font-bold px-2.5 py-1.5 rounded mb-4">
+            <div className="inline-block bg-[#fed23f] text-[#1e2438] text-base sm:text-lg font-bold px-2.5 py-1.5 rounded mb-4">
               {monthlyPayment !== null
                 ? `${monthlyPayment} ₼ x ${selectedMonth} ay`
                 : "Aylıq ödəniş hesablanmır"}
             </div>
 
             {/* Kredit kalkulyatoru qutusu */}
-            <div className="border border-gray-200 rounded-md p-4 mb-6">
+            <div className="border border-gray-200 rounded-md p-3 sm:p-4 mb-6">
 
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center gap-2 mb-4">
 
-                <div className="flex items-center gap-2.5">
-                  <div className="w-6 h-6 bg-[#b71c1c] rounded-[3px] flex items-center justify-center relative overflow-hidden">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-6 h-6 flex-shrink-0 bg-[#b71c1c] rounded-[3px] flex items-center justify-center relative overflow-hidden">
                     <div className="w-3 h-3 bg-white rotate-45" />
                     <div className="absolute w-[2px] h-[18px] bg-[#b71c1c]" />
                   </div>
 
-                  <span className="text-lg font-bold text-[#1e2438]">
+                  <span className="text-base sm:text-lg font-bold text-[#1e2438]">
                     Kredit kalkulyatoru
                   </span>
                 </div>
 
-                <span className="bg-[#d91ce5] text-white text-[13px] font-bold px-2.5 py-0.5 rounded">
+                <span className="bg-[#d91ce5] text-white text-[13px] font-bold px-2.5 py-0.5 rounded flex-shrink-0">
                   0-0-{selectedMonth}
                 </span>
 
               </div>
 
               {/* Ay seçim düymələri */}
-              <div className="grid grid-cols-4 gap-2.5 mb-3.5">
+              <div className="grid grid-cols-4 gap-2 mb-3.5">
                 {months.map((month) => {
                   const isActive = selectedMonth === month;
 
@@ -302,7 +281,7 @@ function Detail() {
                       key={month}
                       type="button"
                       onClick={() => setSelectedMonth(month)}
-                      className={`py-3 rounded-md text-base border transition-all cursor-pointer ${isActive
+                      className={`py-2 sm:py-3 rounded-md text-sm sm:text-base border transition-all cursor-pointer ${isActive
                         ? "bg-[#fed23f] border-[#fed23f] font-semibold text-[#1e2438]"
                         : "bg-white border-gray-200 font-medium text-[#1e2438] hover:border-[#fed23f]"
                         }`}
@@ -314,7 +293,7 @@ function Detail() {
               </div>
 
               {/* Kalkulyator alt info paneli */}
-              <div className="bg-[#fed23f] text-[#1e2438] text-sm font-medium text-center py-2 px-3 rounded">
+              <div className="bg-[#fed23f] text-[#1e2438] text-xs sm:text-sm font-medium text-center py-2 px-2 sm:px-3 rounded">
                 0 ₼ komissiya, 0 ₼ ilkin ödəniş, {selectedMonth} aylıq kredit
               </div>
 
@@ -328,7 +307,7 @@ function Detail() {
                   `${product.name} (${selectedMonth} aylıq kreditlə) səbətə əlavə edildi!`
                 )
               }
-              className="w-full bg-[#ea1c85] hover:bg-[#d11474] text-white font-bold text-base py-4 rounded-md transition-colors cursor-pointer"
+              className="w-full bg-[#ea1c85] hover:bg-[#d11474] text-white font-bold text-base py-3 sm:py-4 rounded-md transition-colors cursor-pointer"
             >
               Səbətə əlavə etmək
             </button>
