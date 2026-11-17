@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,10 +19,9 @@ function Cart({
   const filledStars = Math.round(Math.min(Math.max(rating, 0), 5));
 
   return (
-
     <div className="card relative w-[265px] overflow-hidden bg-white border border-gray-200 rounded px-[20px] py-[16px] flex flex-col">
 
-      {/* Ürək ikonu (klaviatura ilə də işləsin deyə button) */}
+      {/* Ürək ikonu */}
       <button
         type="button"
         onClick={() => setIsFavorite((prev) => !prev)}
@@ -44,12 +44,17 @@ function Cart({
 
       {/* Şəkil və nişanlar */}
       <div className="card-sekil-qutu relative w-full h-[195px] flex items-center justify-center">
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="card-sekil w-[165px] max-h-full object-contain"
-        />
+        <Link
+          to={`/product/${id}`}
+          className="w-full h-full flex items-center justify-center"
+        >
+          <img
+            src={Array.isArray(image) ? image[0] : image}
+            alt={title}
+            loading="lazy"
+            className="card-sekil w-[165px] max-h-full object-contain cursor-pointer"
+          />
+        </Link>
 
         <div className="card-isareler absolute left-0 bottom-0 z-10 flex flex-col items-start gap-y-[3px]">
           {discount && (
@@ -57,6 +62,7 @@ function Cart({
               {discount}
             </span>
           )}
+
           {badge && (
             <span className="card-badge min-h-[18px] h-auto max-w-[180px] px-[4px] py-[3px] flex items-center bg-[#d63de0] text-white text-[11px] font-medium rounded-[2px] whitespace-normal break-words leading-[14px]">
               {badge}
@@ -65,43 +71,48 @@ function Cart({
         </div>
       </div>
 
-      {/* Qiymət */}
-      <div className="card-qiymet-sira mt-[12px] flex flex-wrap items-center gap-x-[8px]">
-        <span className="card-qiymet text-[18px] font-bold text-[#f0317f]">{price} ₼</span>
-        {oldPrice && (
-          <span className="card-kohne-qiymet text-[13px] font-semibold text-gray-400 line-through">
-            {oldPrice} ₼
+      <Link
+        to={`/product/${id}`}
+        className="block cursor-pointer"
+      >
+        {/* Qiymət */}
+        <div className="card-qiymet-sira mt-[12px] flex flex-wrap items-center gap-x-[8px]">
+          <span className="card-qiymet text-[18px] font-bold text-[#f0317f]">{price} ₼</span>
+          {oldPrice && (
+            <span className="card-kohne-qiymet text-[13px] font-semibold text-gray-400 line-through">
+              {oldPrice} ₼
+            </span>
+          )}
+        </div>
+
+        {/* Taksit */}
+        <div className="mt-[6px] min-h-[22px]">
+          {monthly && (
+            <div className="card-taksit w-fit px-[8px] h-[22px] flex items-center justify-center bg-[#fde047] rounded-[3px] text-[13px] font-medium text-gray-900">
+              {monthly} ₼ x 12 ay
+            </div>
+          )}
+        </div>
+
+        {/* Başlıq */}
+        <h3 className="card-basliq mt-[6px] min-h-[38px] text-[13px] leading-[19px] text-gray-800 line-clamp-2 overflow-hidden">
+          {title}
+        </h3>
+
+        {/* Reytinq */}
+        <div className="card-reytinq mt-[6px] flex items-center gap-x-[5px]">
+          <span
+            className="card-ulduzlar text-[14px] tracking-[1px]"
+            aria-label={`${filledStars} ulduz`}
+          >
+            <span className="text-[#ff9900]">{'★'.repeat(filledStars)}</span>
+            <span className="text-gray-300">{'★'.repeat(5 - filledStars)}</span>
           </span>
-        )}
-      </div>
+          <span className="card-reytinq-say text-[12px] text-gray-500">{reviews} reytinq</span>
+        </div>
+      </Link>
 
-      {/* Taksit — yer həmişə qorunur ki, bütün kartlar eyni hündürlükdə olsun */}
-      <div className="mt-[6px] min-h-[22px]">
-        {monthly && (
-          <div className="card-taksit w-fit px-[8px] h-[22px] flex items-center justify-center bg-[#fde047] rounded-[3px] text-[13px] font-medium text-gray-900">
-            {monthly} ₼ x 12 ay
-          </div>
-        )}
-      </div>
-
-      {/* Başlıq — həmişə 2 sətirlik yer */}
-      <h3 className="card-basliq mt-[6px] min-h-[38px] text-[13px] leading-[19px] text-gray-800 line-clamp-2 overflow-hidden">
-        {title}
-      </h3>
-
-      {/* Reytinq */}
-      <div className="card-reytinq mt-[6px] flex items-center gap-x-[5px]">
-        <span
-          className="card-ulduzlar text-[14px] tracking-[1px]"
-          aria-label={`${filledStars} ulduz`}
-        >
-          <span className="text-[#ff9900]">{'★'.repeat(filledStars)}</span>
-          <span className="text-gray-300">{'★'.repeat(5 - filledStars)}</span>
-        </span>
-        <span className="card-reytinq-say text-[12px] text-gray-500">{reviews} reytinq</span>
-      </div>
-
-      {/* Düymə — mt-auto əvəzinə sabit məsafə */}
+      {/* Səbət düyməsi */}
       <button
         type="button"
         onClick={onAddToCart}
@@ -122,8 +133,6 @@ function Cart({
         Sabah
       </button>
     </div>
-
-
   );
 }
 

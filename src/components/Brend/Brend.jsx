@@ -82,7 +82,7 @@ const Brend = () => {
   const shown = brands.slice(page * perPage, page * perPage + perPage);
 
   return (
-    <section className="w-full flex justify-center py-8 bg-[#f7f7fa]">
+    <section className="w-full flex justify-center py-8 bg-[#FAFBFF]">
       <div className="w-[90%]">
         <h2 className="text-2xl font-bold text-[#1a1a2e] mb-6">Populyar brendlər</h2>
 
@@ -90,7 +90,7 @@ const Brend = () => {
           {page > 0 && (
             <button
               onClick={() => setPage(page - 1)}
-              className="absolute -left-5 z-10 w-10 h-10 bg-white shadow-md rounded-full text-[#ea1b75] border border-gray-100 font-bold cursor-pointer"
+              className="absolute -left-5 z-10 w-10 h-10 bg-white shadow-md text-[20px] rounded-full text-[#ea1b75] border border-gray-100 font-bold cursor-pointer"
             >
               &lt;
             </button>
@@ -102,7 +102,7 @@ const Brend = () => {
                 key={b.name}
                 className="bg-white h-24 rounded-md shadow-sm border border-gray-100 flex items-center justify-center p-5 hover:shadow-md cursor-pointer"
               >
-                <img src={b.logo} alt={b.name} className="max-h-12 max-w-[80%] object-contain" />
+                <img src={b.logo} alt={b.name} className="h-[100%] w-[100%] object-contain" />
               </div>
             ))}
           </div>
@@ -110,7 +110,7 @@ const Brend = () => {
           {page < pageCount - 1 && (
             <button
               onClick={() => setPage(page + 1)}
-              className="absolute -right-5 z-10 w-10 h-10 bg-white shadow-md rounded-full text-[#ea1b75] border border-gray-100 font-bold cursor-pointer"
+              className="absolute -right-5 z-10 w-10 h-10 bg-white text-[20px] shadow-md rounded-full text-[#ea1b75] border border-gray-100 font-bold cursor-pointer"
             >
               &gt;
             </button>

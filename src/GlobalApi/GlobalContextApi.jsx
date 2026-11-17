@@ -12,7 +12,7 @@ export const GlobalProvider = ({ children }) => {
     const getProducts = async () => {
       try {
         const res = await fetch(
-          "https://elan-api-lgwm.onrender.com/api/products?limit=30"
+          "https://elan-api-lgwm.onrender.com/api/products?limit=100"
         );
 
         if (!res.ok) {

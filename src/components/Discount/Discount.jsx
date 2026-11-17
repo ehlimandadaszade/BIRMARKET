@@ -1,66 +1,72 @@
-import { useContext } from "react";
-import { GlobalContextApi } from "../../GlobalApi/GlobalContextApi.jsx";
+import smartfon from "../../assets/smartfon.png";
+import etir from "../../assets/etir.png";
+import paltaryuyan from "../../assets/paltaryuyan.png";
+import uzeQulluq from "../../assets/uze-qulluq.png";
+import dekor from "../../assets/dekor.png";
+import yuma from "../../assets/yuma.png";
+import televizor from "../../assets/televizor.png";
+import makiyaj from "../../assets/makiyaj.png";
+import mebel from "../../assets/mebel.png";
+import qabQacaq from "../../assets/qab-qacaq.png";
+import kondisioner from "../../assets/kondisioner.png";
+import notbuk from "../../assets/notbuk.png";
 
-function DiscountCard({ title, product, className = "", big = false }) {
+function DiscountCard({
+  title,
+  image,
+  className = "",
+  big = false,
+  wide = false,
+}) {
   return (
     <div
       className={`relative isolate overflow-hidden bg-[#A31DA5] ${className}`}
     >
+      {/* Arxa fon naxışı */}
       <div
         aria-hidden="true"
-        className="absolute right-[12%] top-[25%] -z-10 h-[80%] w-[60%] rotate-[-25deg] rounded-[45%] border-[20px] border-[#EC168F]/60"
+        className="absolute right-[10%] top-[24%] -z-10 h-[85%] w-[60%] rotate-[-25deg] rounded-[45%] border-[18px] border-[#EC168F]/60 lg:border-[24px]"
+      />
+
+      <div
+        aria-hidden="true"
+        className="absolute bottom-[-15%] right-[20%] -z-10 h-[65%] w-[35%] rotate-[-25deg] rounded-[45%] border-[12px] border-[#EC168F]/40"
       />
 
       <h3
-        className={`relative z-10 font-bold leading-tight text-white ${
+        className={`relative z-10 m-0 font-bold leading-tight tracking-[-0.025em] text-white ${
           big
-            ? "p-6 text-4xl lg:p-8 lg:text-6xl"
-            : "p-3 text-lg lg:p-4 lg:text-[clamp(18px,1.6vw,30px)]"
+            ? "p-6 text-4xl lg:p-8 lg:text-[clamp(36px,3.5vw,64px)]"
+            : wide
+              ? "p-5 text-3xl lg:text-4xl"
+              : "p-3 text-lg lg:p-4 lg:text-[clamp(18px,1.6vw,32px)]"
         }`}
       >
         {title}
       </h3>
 
-      {product && (
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          className={`absolute bottom-0 right-0 object-contain object-bottom ${
-            big ? "h-[78%] w-[95%]" : "h-[75%] w-full"
-          }`}
-        />
-      )}
+      <img
+        src={image}
+        alt={title}
+        className={`absolute bottom-0 right-0 block max-w-none object-contain object-bottom ${
+          big
+            ? "h-[78%] w-[95%]"
+            : wide
+              ? "h-[95%] w-[65%] object-right-bottom"
+              : "h-[76%] w-full"
+        }`}
+      />
     </div>
   );
 }
 
 const Discount = () => {
-  const context = useContext(GlobalContextApi);
-
-  if (!context) {
-    return <p className="p-8">GlobalProvider qoşulmayıb.</p>;
-  }
-
-  const { Api, loading } = context;
-
-  if (loading) {
-    return <p className="p-8">Yüklənir...</p>;
-  }
-
-  if (Api.length === 0) {
-    return <p className="p-8">Məhsullar yüklənmədi.</p>;
-  }
-
-  function getProduct(category) {
-    return Api.find((product) => product.category === category);
-  }
-
   return (
-    <section className="bg-white px-5 py-8 md:px-10 lg:px-[5%]">
+    <section className="bg-white px-5 py-8 font-sans md:px-10 lg:px-[5%]">
       <div className="mx-auto max-w-[1920px]">
         {/* Başlıq və loqo */}
-        <div className="mb-10 flex flex-wrap items-center gap-x-7 gap-y-4">
-          <h2 className="text-3xl font-bold tracking-tight text-[#25254F] md:text-5xl">
+        <div className="mb-10 flex flex-wrap items-center gap-x-7 gap-y-4 lg:mb-12">
+          <h2 className="m-0 text-3xl font-bold tracking-tight text-[#25254F] md:text-5xl">
             60%-dək endirim!
           </h2>
 
@@ -92,44 +98,45 @@ const Discount = () => {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
           <DiscountCard
             title="Smartfonlar"
-            product={getProduct("smartphones")}
+            image={smartfon}
             big
             className="col-span-2 aspect-square md:row-span-2 md:aspect-auto"
           />
 
           <DiscountCard
             title="Ətirlər"
-            product={getProduct("fragrances")}
+            image={etir}
             className="aspect-square"
           />
 
           <DiscountCard
-            title="Saatlar"
-            product={getProduct("mens-watches")}
+            title="Paltaryuyanlar"
+            image={paltaryuyan}
             className="aspect-square"
           />
 
           <DiscountCard
             title="Üzə qulluq"
-            product={getProduct("skin-care")}
+            image={uzeQulluq}
             className="aspect-square"
           />
 
           <DiscountCard
             title="Ev dekorları"
-            product={getProduct("home-decoration")}
+            image={dekor}
             className="aspect-square"
           />
 
           <DiscountCard
-            title="Ərzaqlar"
-            product={getProduct("groceries")}
+            title="Yuma vasitələri"
+            image={yuma}
             className="aspect-square"
           />
 
           <DiscountCard
-            title="Planşetlər"
-            product={getProduct("tablets")}
+            title="Televizorlar"
+            image={televizor}
+            wide
             className="col-span-2 min-h-[220px] md:col-span-3 md:min-h-0"
           />
         </div>
@@ -138,31 +145,31 @@ const Discount = () => {
         <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           <DiscountCard
             title="Makiyaj"
-            product={getProduct("beauty")}
+            image={makiyaj}
             className="aspect-square"
           />
 
           <DiscountCard
             title="Ev mebeli"
-            product={getProduct("furniture")}
+            image={mebel}
             className="aspect-square"
           />
 
           <DiscountCard
-            title="Mətbəx əşyaları"
-            product={getProduct("kitchen-accessories")}
+            title="Qab-qacaq"
+            image={qabQacaq}
             className="aspect-square"
           />
 
           <DiscountCard
-            title="İdman malları"
-            product={getProduct("sports-accessories")}
-            className="aspect-square"
+            title="Kondisionerlər"
+            image={kondisioner}
+            className="aspect-square "
           />
 
           <DiscountCard
             title="Notbuklar"
-            product={getProduct("laptops")}
+            image={notbuk}
             className="aspect-square"
           />
         </div>
