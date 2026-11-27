@@ -34,6 +34,7 @@ import ondoqquz from "../../assets/ondoqquz.svg";
 import yirmi from "../../assets/yirmi.svg";
 import yirmibir from "../../assets/yirmibir.svg";
 import yirmiiki from "../../assets/yirmiiki.svg";
+import { Link } from "react-router-dom";
 
 
 
@@ -209,7 +210,10 @@ const Header = () => {
 
         <div className="w-[90%] h-[60px] flex items-center gap-[20px] justify-between">
           <div className=" w-[130px] h-[30px]" >
-            <img className="min-w-[130px] h-[30px]  cursor-pointer" src={birmarket} alt="birmarket" />
+            <Link to="/">
+              <img className="min-w-[130px] h-[30px]  cursor-pointer" src={birmarket} alt="birmarket" />
+            </Link>
+
           </div>
 
           <div className=" flex">
